@@ -9,25 +9,26 @@ import { formatRelativeTime } from '@/lib/utils/formatting';
 import TicketStatusBadge from '@/components/tickets/TicketStatusBadge';
 
 export default async function DashboardPage() {
-  // Fetch stats
-  const allTickets = await db.select().from(tickets);
-  const openTickets = allTickets.filter(t => t.status === 'OPEN');
-  const completedToday = allTickets.filter(t => {
-    if (!t.completedAt) return false;
-    const today = new Date();
-    const completed = new Date(t.completedAt);
-    return completed.toDateString() === today.toDateString();
-  });
+  try {
+    // Fetch stats
+    const allTickets = await db.select().from(tickets);
+    const openTickets = allTickets.filter(t => t.status === 'OPEN');
+    const completedToday = allTickets.filter(t => {
+      if (!t.completedAt) return false;
+      const today = new Date();
+      const completed = new Date(t.completedAt);
+      return completed.toDateString() === today.toDateString();
+    });
 
-  const allCustomers = await db.select().from(customers);
+    const allCustomers = await db.select().from(customers);
 
-  // Fetch recent tickets with customer info
-  const recentTickets = await db
-    .select({
-      id: tickets.id,
-      title: tickets.title,
-      status: tickets.status,
-      priority: tickets.priority,
+    // Fetch recent tickets with customer info
+    const recentTickets = await db
+      .select({
+        id: tickets.id,
+        title: tickets.title,
+        status: tickets.status,
+        priority: tickets.priority,
       createdAt: tickets.createdAt,
       customerName: customers.firstName,
       customerLastName: customers.lastName,
@@ -191,4 +192,20 @@ export default async function DashboardPage() {
       </Card>
     </div>
   );
+  } catch (error) {
+    console.error('Dashboard error:', error);
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-foreground mb-2">ত্রুটি ঘটেছে</h1>
+          <p className="text-muted-foreground mb-4">
+            {error instanceof Error ? error.message : 'অজানা ত্রুটি'}
+          </p>
+          <Link href="/login">
+            <Button variant="action">লগইন পৃষ্ঠায় ফিরুন</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 }

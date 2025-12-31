@@ -68,14 +68,16 @@ export default function Navbar({ userRole, userName }: NavbarProps) {
             <ThemeToggle />
             
             {userName && (
-              <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-muted rounded-lg">
-                <div className="w-8 h-8 bg-royal-blue/10 rounded-full flex items-center justify-center">
-                  <span className="text-sm font-bold text-royal-blue">
-                    {userName.charAt(0).toUpperCase()}
-                  </span>
+              <Link href="/dashboard/profile">
+                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-muted rounded-lg hover:bg-muted/80 transition-colors cursor-pointer">
+                  <div className="w-8 h-8 bg-royal-blue/10 rounded-full flex items-center justify-center">
+                    <span className="text-sm font-bold text-royal-blue">
+                      {userName.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{userName}</span>
                 </div>
-                <span className="text-sm font-medium text-foreground">{userName}</span>
-              </div>
+              </Link>
             )}
 
             <LogoutLink>
