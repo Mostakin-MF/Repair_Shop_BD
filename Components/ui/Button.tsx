@@ -1,5 +1,5 @@
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'outline' | 'default' | 'action' | 'primary' | 'ghost';
+  variant?: 'outline' | 'default' | 'action' | 'primary' | 'ghost' | 'danger' | 'success';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 };
@@ -16,6 +16,12 @@ export default function Button({ children, className = '', size = 'md', variant 
       break;
     case 'action':
       variantClasses = 'bg-service-yellow text-dark-slate hover:bg-yellow-500 shadow-sm';
+      break;
+    case 'danger':
+      variantClasses = 'bg-red-500 text-white hover:bg-red-600 shadow-sm';
+      break;
+    case 'success':
+      variantClasses = 'bg-green-500 text-white hover:bg-green-600 shadow-sm';
       break;
     case 'ghost':
       variantClasses = 'bg-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800';

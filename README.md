@@ -1,8 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RepairShop BD - Service Management Platform
 
-## Getting Started
+A comprehensive B2B service booking platform for connecting repair shop technicians with customers in Bangladesh. Built with Next.js 15, React 19, and modern web technologies.
 
-First, run the development server:
+## Features
+
+- 🔐 **Authentication**: Kinde OAuth with role-based access control
+- 📊 **Dashboard**: Real-time stats and recent activity
+- 🎫 **Ticket Management**: Create, track, and complete repair tickets
+- 👥 **Customer Management**: Contact information and service history
+- 🌓 **Dark/Light Mode**: Fully integrated theme system
+- 🇧🇩 **Bengali Language**: All UI labels in বাংলা
+- 📱 **Responsive Design**: Optimized for desktop and tablet
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS 4
+- **Database**: Neon PostgreSQL with Drizzle ORM
+- **Auth**: Kinde Auth
+- **State Management**: TanStack Query, Zustand
+- **Forms**: React Hook Form + Zod
+
+## Quick Start
+
+See [SETUP.md](SETUP.md) for detailed setup instructions.
+
+```bash
+# Install dependencies
+npm install
+
+# Setup .env.local with your credentials
+cp .env.local.example .env.local
+
+# Push database schema
+npm run db:push
+
+# Run development server
+npm run dev
+```
+
+## Documentation
+
+- [SETUP.md](SETUP.md) - Setup instructions
+- [walkthrough.md](C:/Users/USER/.gemini/antigravity/brain/c1de2c07-ff5d-4f38-b6be-12c3700d3144/walkthrough.md) - Implementation walkthrough
+- [PROJECT_OUTLINE.md](PROJECT_OUTLINE.md) - Project specification
+
+## License
+
+MIT
 
 ```bash
 npm run dev

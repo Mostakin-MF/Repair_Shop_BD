@@ -1,5 +1,5 @@
-import Button from '@/Components/ui/Button';
-import ThemeToggle from '@/Components/ui/ThemeToggle';
+import Button from '@/components/ui/Button';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Zap, Clock, Shield } from 'lucide-react';
 
