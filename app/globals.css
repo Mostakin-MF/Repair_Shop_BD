@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* CSS Variables defined at top level for global access */
+:root {
+    --background: #FFFFFF;
+    --foreground: #000000;
+    /* Strict Black */
+
+    --card: #FFFFFF;
+    --card-foreground: #000000;
+
+    --popover: #FFFFFF;
+    --popover-foreground: #000000;
+
+    --primary: #2563EB;
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #F8FAFC;
+    /* light-gray */
+    --secondary-foreground: #0F172A;
+
+    --muted: #F1F5F9;
+    /* soft-gray */
+    --muted-foreground: #475569;
+    /* slate-gray */
+
+    --accent: #FACC15;
+    --accent-foreground: #0F172A;
+
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+
+    --border: #E5E7EB;
+    --input: #E5E7EB;
+    --ring: #2563EB;
+}
+
+.dark {
+    --background: #020617;
+    /* dark-navy */
+    --foreground: #FFFFFF;
+    /* Strict White */
+
+    --card: #0f172a;
+    --card-foreground: #FFFFFF;
+
+    --popover: #020617;
+    --popover-foreground: #FFFFFF;
+
+    --primary: #38BDF8;
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #020617;
+    /* deep-slate */
+    --secondary-foreground: #FFFFFF;
+
+    --muted: #1E293B;
+    /* dark-border/muted */
+    --muted-foreground: #94A3B8;
+    /* cool-gray */
+
+    --accent: #FACC15;
+    --accent-foreground: #0F172A;
+
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+
+    --border: #1E293B;
+    --input: #1E293B;
+    --ring: #38BDF8;
+}
+
+@theme {
+    /* Primary Brand Colors */
+    --color-royal-blue: #2563EB;
+    --color-sky-blue: #38BDF8;
+    --background-image-blue-gradient: linear-gradient(135deg, #2563EB, #38BDF8);
+
+    /* Accent Color */
+    --color-service-yellow: #FACC15;
+
+    /* Semantic Tokens */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    /* Restored */
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* Primitive Colors Access */
+    --color-pure-white: #FFFFFF;
+    --color-dark-navy: #020617;
+    --color-emerald-green: #22C55E;
+    --color-soft-red: #EF4444;
+}
+
+/* Base styles */
+@layer base {
+
+    html,
+    body {
+        height: 100%;
+        background-color: var(--background);
+        color: var(--foreground);
+        transition: background-color 0.3s, color 0.3s;
+    }
+}
