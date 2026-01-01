@@ -1,29 +1,33 @@
 import Button from '@/components/ui/Button';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Zap, Clock, Shield } from 'lucide-react';
+import { Phone, Mail, MapPin, Zap, Wrench, Droplets, PaintBucket, Car, Bike, CalendarCheck } from 'lucide-react';
 
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-blue-gradient text-white shadow-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <nav className="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 shadow-sm transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Zap className="w-7 h-7 text-service-yellow fill-service-yellow" />
-            <h1 className="text-2xl font-bold tracking-tight">RepairShop</h1>
+            <div className="bg-service-yellow/10 dark:bg-service-yellow/20 p-2 rounded-lg">
+                <Wrench className="w-6 h-6 text-service-yellow fill-service-yellow" />
+            </div>
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              <span className="text-royal-blue dark:text-sky-400">Auto</span>Fix <span className="text-muted-foreground text-sm font-normal ml-1">BD</span>
+            </h1>
           </div>
           <div className="flex gap-4 items-center">
             <ThemeToggle />
-            <Link href="/login">
-              <Button variant="outline" size="sm" className="text-white border-white hover:bg-white/10">
-                কর্মচারী লগইন
+            <Link href="/book">
+              <Button variant="action" size="sm" className="hidden sm:flex shadow-md hover:shadow-lg transition-all">
+                অ্যাপয়েন্টমেন্ট বুক করুন
               </Button>
             </Link>
             <Link href="/login">
-              <Button size="sm" variant="action">
-                Login
+              <Button size="sm" variant="outline" className="border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+                Staff Login
               </Button>
             </Link>
           </div>
@@ -31,238 +35,149 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-blue-gradient dark:bg-dark-navy py-20 md:py-32">
-        {/* Dark mode overlay for hero as per system spec */}
-        <div className="absolute inset-0 bg-blue-gradient opacity-0 dark:opacity-5 pointer-events-none"></div>
+      <section className="relative overflow-hidden pt-20 pb-32 md:pt-32 md:pb-48">
+        {/* Backgrounds */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 transition-colors duration-500"></div>
         
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Abstract Shapes */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-white/10 dark:bg-blue-500/10 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-service-yellow/20 dark:bg-purple-500/10 blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
-                আপনার মেরামত কাজ সহজ করুন
+            <div className="space-y-8">
+               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 dark:bg-white/5 border border-white/20 text-white text-sm font-medium backdrop-blur-sm">
+                  <span className="flex h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
+                  এখন খোলা আছে
+               </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
+                আপনার বাহন,<br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-service-yellow to-amber-300">আমাদের যত্ন</span>
               </h2>
-              <p className="text-xl text-blue-50 dark:text-blue-100 mb-8 max-w-lg opacity-90">
-                ডিজিটাল টিকেট সিস্টেম দিয়ে গ্রাহক এবং কাজ পরিচালনা করুন। বাংলাদেশের জন্য বিশেষভাবে ডিজাইন করা।
+              <p className="text-lg text-blue-50 dark:text-slate-300 max-w-lg leading-relaxed font-light">
+                অটো ফিক্স বিডি - কার ও বাইকের জন্য বাংলাদেশের সবচেয়ে নির্ভরযোগ্য ডিজিটাল সার্ভিস সেন্টার। বিশেষজ্ঞ মেকানিক, জেনুইন পার্টস।
               </p>
-              <div className="flex gap-4 flex-wrap">
-                <Link href="/login">
-                  <Button size="lg" variant="action" className="shadow-lg transform transition hover:scale-105 active:scale-95">
-                    শুরু করুন
+              <div className="flex gap-4 flex-wrap pt-2">
+                <Link href="/book">
+                  <Button size="lg" className="bg-service-yellow text-slate-900 hover:bg-yellow-400 dark:bg-service-yellow dark:text-slate-900 dark:hover:bg-amber-400 font-bold border-none shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-base h-14 px-8 rounded-full">
+                    <CalendarCheck className="mr-2 w-5 h-5"/>
+                    অ্যাপয়েন্টমেন্ট নিন
                   </Button>
                 </Link>
-                <Link href="#contact">
-                  <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
-                    যোগাযোগ করুন
+                <Link href="#services">
+                  <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 dark:border-white/10 dark:hover:bg-white/5 backdrop-blur-sm h-14 px-8 rounded-full">
+                    সেবাসমূহ দেখুন
                   </Button>
                 </Link>
               </div>
             </div>
 
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-service-yellow to-sky-blue rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-              <div className="relative h-80 md:h-96 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/20 shadow-2xl">
-                <div className="text-center">
-                  <Zap className="w-24 h-24 text-service-yellow mx-auto mb-4 drop-shadow-lg" />
-                  <p className="text-white text-xl font-bold">
-                    সম্পূর্ণ ডিজিটাল সমাধান
-                  </p>
-                </div>
+            <div className="relative group hidden md:block">
+              <div className="absolute -inset-1 bg-gradient-to-r from-service-yellow to-sky-blue rounded-full blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+              <div className="relative h-96 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 shadow-2xl p-10">
+                 <div className="grid grid-cols-2 gap-8 text-center text-white">
+                    <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <Car className="w-16 h-16 mx-auto mb-2 text-service-yellow" />
+                        <span className="font-bold text-lg">কার সার্ভিস</span>
+                    </div>
+                    <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <Bike className="w-16 h-16 mx-auto mb-2 text-sky-blue" />
+                        <span className="font-bold text-lg">বাইক সার্ভিস</span>
+                    </div>
+                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="bg-muted/50 py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Services Section */}
+      <section id="services" className="bg-slate-50 dark:bg-slate-950 py-24 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              আমাদের বৈশিষ্ট্য
+            <p className="text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase mb-3 text-sm">আমাদের সেবাসমূহ</p>
+            <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6">
+              বিশেষজ্ঞদের দ্বারা <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">প্রফেশনাল সেবা</span>
             </h3>
-            <div className="w-20 h-1.5 bg-royal-blue mx-auto rounded-full"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="bg-card p-8 rounded-xl shadow-sm border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="w-14 h-14 bg-royal-blue/10 dark:bg-royal-blue/20 rounded-xl flex items-center justify-center mb-6">
-                <Zap className="w-7 h-7 text-royal-blue" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Service 1: Engine Work */}
+            <div className="group bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:rotate-3 transition-all duration-300">
+                <Zap className="w-8 h-8 text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors" />
               </div>
-              <h4 className="text-xl font-bold text-foreground mb-3">
-                দ্রুত টিকেট ট্র্যাকিং
-              </h4>
-              <p className="text-muted-foreground leading-relaxed">
-                প্রতিটি মেরামতের কাজ একটি অনন্য টিকেটে সংরক্ষণ করুন এবং রিয়েল-টাইমে আপডেট পান।
+              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">ইঞ্জিন কাজ</h4>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                জটিল ইঞ্জিন রিপেয়ার, টিউনিং এবং ওভারহলিং সেবা অভিজ্ঞ মেকানিক দ্বারা।
               </p>
             </div>
 
-            {/* Feature 2 */}
-            <div className="bg-card p-8 rounded-xl shadow-sm border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="w-14 h-14 bg-emerald-green/10 dark:bg-emerald-green/20 rounded-xl flex items-center justify-center mb-6">
-                <Shield className="w-7 h-7 text-emerald-green" />
+            {/* Service 2: Wash */}
+            <div className="group bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-cyan-50 dark:bg-cyan-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-cyan-500 group-hover:-rotate-3 transition-all duration-300">
+                <Droplets className="w-8 h-8 text-cyan-500 dark:text-cyan-400 group-hover:text-white transition-colors" />
               </div>
-              <h4 className="text-xl font-bold text-foreground mb-3">
-                নিরাপদ গ্রাহক ডাটা
-              </h4>
-              <p className="text-muted-foreground leading-relaxed">
-                সকল গ্রাহক তথ্য এক জায়গায় রাখুন - ফোন, ঠিকানা, ইমেইল এবং বিশেষ নোট।
+              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">ফোম ওয়াশ</h4>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                হাই-প্রেসার ফোম ওয়াশ, ইন্টেরিয়র ক্লিনিং এবং পলিশিং।
               </p>
             </div>
 
-            {/* Feature 3 */}
-            <div className="bg-card p-8 rounded-xl shadow-sm border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="w-14 h-14 bg-royal-blue/10 dark:bg-royal-blue/20 rounded-xl flex items-center justify-center mb-6">
-                <Clock className="w-7 h-7 text-royal-blue" />
+            {/* Service 3: Paint */}
+            <div className="group bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-yellow-50 dark:bg-yellow-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-service-yellow group-hover:rotate-3 transition-all duration-300">
+                <PaintBucket className="w-8 h-8 text-service-yellow dark:text-amber-400 group-hover:text-white transition-colors" />
               </div>
-              <h4 className="text-xl font-bold text-foreground mb-3">
-                কর্মচারী ব্যবস্থাপনা
-              </h4>
-              <p className="text-muted-foreground leading-relaxed">
-                বিভিন্ন ভূমিকা এবং অনুমতি সহ আপনার দল পরিচালনা করুন।
+              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">পেইন্ট ও ডেন্টিং</h4>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                উন্নত মানের পেইন্ট এবং ডেন্ট রিপেয়ার সেবা নতুনের মতো ফিনিশিং সহ।
+              </p>
+            </div>
+
+            {/* Service 4: General Servicing */}
+            <div className="group bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:-rotate-3 transition-all duration-300">
+                <Wrench className="w-8 h-8 text-emerald-500 dark:text-emerald-400 group-hover:text-white transition-colors" />
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">জেনারেল সার্ভিসিং</h4>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                অয়েল চেঞ্জ, ব্রেক চেক, এয়ার ফিল্টার এবং সম্পূর্ণ চেকআপ।
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="text-center mb-16">
-          <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            এটি কিভাবে কাজ করে
-          </h3>
-          <div className="w-20 h-1.5 bg-service-yellow mx-auto rounded-full"></div>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            { tag: "১", title: "তথ্য প্রবেশ করুন", desc: "নতুন গ্রাহকের তথ্য যোগ করুন - নাম, ফোন, ঠিকানা।" },
-            { tag: "২", title: "টিকেট তৈরি করুন", desc: "মেরামতের জন্য একটি নতুন টিকেট তৈরি করুন।" },
-            { tag: "৩", title: "ট্র্যাক করুন", desc: "রিয়েল-টাইমে টিকেটের অবস্থা দেখুন।" },
-            { tag: "৪", title: "রিপোর্ট দেখুন", desc: "আপনার ব্যবসার পারফরম্যান্স বিশ্লেষণ করুন।" }
-          ].map((item, idx) => (
-            <div key={idx} className="relative group">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-royal-blue text-white rounded-full flex items-center justify-center font-bold text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">
-                  {item.tag}
-                </div>
-                <h4 className="text-xl font-bold text-foreground mb-2">
-                  {item.title}
-                </h4>
-                <p className="text-muted-foreground px-4">
-                  {item.desc}
-                </p>
-              </div>
-              {idx < 3 && <div className="hidden lg:block absolute top-8 left-[65%] w-full h-[2px] bg-border -z-10"></div>}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact Section - Keeping dark theme specific style but updating border/text logic if needed? 
-          Actually contact section has hardcoded bg-dark-navy and text-white. 
-          This is a dark section regardless of theme. So we keep it as is, or maybe update subtle borders.
-      */}
-      <section id="contact" className="bg-dark-navy text-white py-24 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-royal-blue/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-service-yellow/5 rounded-full blur-3xl -ml-32 -mb-32"></div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            আমাদের সাথে যোগাযোগ করুন
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
-            {/* Phone */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-royal-blue/50 transition-colors">
-              <div className="w-12 h-12 bg-royal-blue/20 rounded-full flex items-center justify-center mb-6">
-                <Phone className="w-6 h-6 text-sky-blue" />
-              </div>
-              <h4 className="font-bold text-xl mb-3">ফোন</h4>
-              <p className="text-soft-white opacity-80">+880 1XXX-XXXXXX</p>
-              <p className="text-soft-white opacity-60 text-sm mt-2">সোমবার - শুক্রবার, ৯টা - ৬টা</p>
-            </div>
-
-            {/* Email */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-emerald-green/50 transition-colors">
-              <div className="w-12 h-12 bg-emerald-green/20 rounded-full flex items-center justify-center mb-6">
-                <Mail className="w-6 h-6 text-emerald-green" />
-              </div>
-              <h4 className="font-bold text-xl mb-3">ইমেইল</h4>
-              <p className="text-soft-white opacity-80">info@repairshop.bd</p>
-              <p className="text-soft-white opacity-60 text-sm mt-2">সাপোর্ট: support@repairshop.bd</p>
-            </div>
-
-            {/* Address */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-soft-red/50 transition-colors">
-              <div className="w-12 h-12 bg-soft-red/20 rounded-full flex items-center justify-center mb-6">
-                <MapPin className="w-6 h-6 text-soft-red" />
-              </div>
-              <h4 className="font-bold text-xl mb-3">ঠিকানা</h4>
-              <p className="text-soft-white opacity-80">ঢাকা, বাংলাদেশ</p>
-              <p className="text-soft-white opacity-60 text-sm mt-2">প্রতিটি জেলায় সেবা</p>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center pt-12 border-t border-white/10">
-            <h4 className="text-2xl md:text-3xl font-bold mb-6">আজই আপনার ব্যবসা আধুনিক করুন</h4>
-            <p className="text-soft-white opacity-70 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-              আপনার মেরামত দোকানকে ডিজিটালাইজ করুন এবং আরও দক্ষতার সাথে কাজ করুন।
+      {/* CTA Book Now */}
+      <section className="py-20 text-center px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-slate-900 dark:to-blue-950 transition-colors duration-500"></div>
+        <div className="relative z-10 text-white">
+            <h3 className="text-3xl md:text-4xl font-bold mb-6">আপনার সার্ভিসের জন্য প্রস্তুত?</h3>
+            <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+            আজই অনলাইনে বুকিং দিন এবং দীর্ঘ লাইনে দাঁড়ানো এড়িয়ে চলুন। আমরা আপনার সময়ের মূল্য বুঝি।
             </p>
-            <Link href="/login">
-              <Button size="lg" variant="action" className="px-10 py-4 text-xl shadow-2xl">
-                কর্মচারী লগইন করুন
-              </Button>
+            <Link href="/book">
+                <Button size="lg" variant="action" className="bg-white text-blue-600 hover:bg-gray-100 dark:bg-service-yellow dark:text-slate-900 dark:hover:bg-amber-400 font-bold px-10 py-6 text-xl shadow-xl border-none">
+                    বুকিং দিন
+                </Button>
             </Link>
-          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-background text-muted-foreground py-16 border-t border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
-            <div className="col-span-1 md:col-span-1">
-              <div className="flex items-center gap-2 mb-6">
-                <Zap className="w-6 h-6 text-royal-blue" />
-                <span className="text-2xl font-bold text-foreground">RepairShop</span>
-              </div>
-              <p className="text-sm leading-relaxed">বাংলাদেশে মেরামত ব্যবসার জন্য সম্পূর্ণ ডিজিটাল সমাধান। আপনার কাজ পরিচালনা করুন স্মার্টভাবে।</p>
-            </div>
-            <div>
-              <h5 className="font-bold text-foreground mb-6 uppercase tracking-wider text-xs">পণ্য</h5>
-              <ul className="space-y-4 text-sm">
-                <li><a href="#" className="hover:text-royal-blue transition-colors">বৈশিষ্ট্য</a></li>
-                <li><a href="#" className="hover:text-royal-blue transition-colors">মূল্য নির্ধারণ</a></li>
-                <li><a href="#" className="hover:text-royal-blue transition-colors">নিরাপত্তা</a></li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-bold text-foreground mb-6 uppercase tracking-wider text-xs">সহায়তা</h5>
-              <ul className="space-y-4 text-sm">
-                <li><a href="#" className="hover:text-royal-blue transition-colors">সাহায্য কেন্দ্র</a></li>
-                <li><a href="#" className="hover:text-royal-blue transition-colors">যোগাযোগ করুন</a></li>
-                <li><a href="#" className="hover:text-royal-blue transition-colors">ব্লগ</a></li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-bold text-foreground mb-6 uppercase tracking-wider text-xs">আইনি</h5>
-              <ul className="space-y-4 text-sm">
-                <li><a href="#" className="hover:text-royal-blue transition-colors">গোপনীয়তা নীতি</a></li>
-                <li><a href="#" className="hover:text-royal-blue transition-colors">শর্তাবলী</a></li>
-              </ul>
-            </div>
+      {/* Footer (Simplified) */}
+      <footer className="bg-background text-muted-foreground py-12 border-t border-border mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+           <div className="flex items-center gap-2">
+            <Wrench className="w-6 h-6 text-royal-blue" />
+            <span className="text-xl font-bold text-foreground">AutoFix BD</span>
           </div>
-
-          <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm opacity-80">© 2025 RepairShop. সর্বাধিকার সংরক্ষিত।</p>
-            <div className="flex gap-6 items-center">
-              <p className="text-sm opacity-80">বাংলাদেশে তৈরি এবং পরিচালিত।</p>
-              <div className="w-px h-4 bg-gray-line dark:bg-dark-border"></div>
-              <Zap className="w-4 h-4 text-service-yellow" />
-            </div>
+          <p className="text-sm">© 2026 AutoFix BD. সর্বস্বত্ব সংরক্ষিত।</p>
+          <div className="flex gap-4">
+            <Phone className="w-5 h-5 hover:text-royal-blue cursor-pointer" />
+            <Mail className="w-5 h-5 hover:text-royal-blue cursor-pointer" />
+            <MapPin className="w-5 h-5 hover:text-royal-blue cursor-pointer" />
           </div>
         </div>
       </footer>

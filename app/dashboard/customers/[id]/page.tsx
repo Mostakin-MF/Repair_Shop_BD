@@ -9,11 +9,12 @@ import Button from '@/components/ui/Button';
 import TicketStatusBadge from '@/components/tickets/TicketStatusBadge';
 import { ArrowLeft, Mail, Phone, MapPin, Edit } from 'lucide-react';
 
-export default async function CustomerDetailPage({ params }: { params: { id: string } }) {
+export default async function CustomerDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const [customer] = await db
     .select()
     .from(customers)
-    .where(eq(customers.id, params.id));
+    .where(eq(customers.id, id));
 
   if (!customer) {
     notFound();
@@ -22,7 +23,7 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
   const customerTickets = await db
     .select()
     .from(tickets)
-    .where(eq(tickets.customerId, params.id))
+    .where(eq(tickets.customerId, id))
     .orderBy(desc(tickets.createdAt));
 
   return (

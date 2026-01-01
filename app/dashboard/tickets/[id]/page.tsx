@@ -8,9 +8,10 @@ import TicketStatusBadge from '@/components/tickets/TicketStatusBadge';
 import { formatDate, formatRelativeTime } from '@/lib/utils/formatting';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
-import { ArrowLeft, User, Calendar, AlertCircle } from 'lucide-react';
+import { ArrowLeft, User, Calendar, AlertCircle, Edit, Car, Wrench } from 'lucide-react';
 
-export default async function TicketDetailPage({ params }: { params: { id: string } }) {
+export default async function TicketDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const [ticket] = await db
     .select({
       id: tickets.id,
@@ -22,6 +23,10 @@ export default async function TicketDetailPage({ params }: { params: { id: strin
       createdAt: tickets.createdAt,
       completedAt: tickets.completedAt,
       updatedAt: tickets.updatedAt,
+      vehicleType: tickets.vehicleType,
+      vehicleModel: tickets.vehicleModel,
+      serviceType: tickets.serviceType,
+      appointmentDate: tickets.appointmentDate,
       customerName: customers.firstName,
       customerLastName: customers.lastName,
       customerId: customers.id,
@@ -31,7 +36,7 @@ export default async function TicketDetailPage({ params }: { params: { id: strin
     .from(tickets)
     .leftJoin(customers, eq(tickets.customerId, customers.id))
     .leftJoin(users, eq(tickets.assignedTo, users.id))
-    .where(eq(tickets.id, params.id));
+    .where(eq(tickets.id, id));
 
   if (!ticket) {
     notFound();
@@ -53,6 +58,14 @@ export default async function TicketDetailPage({ params }: { params: { id: strin
           </Button>
         </Link>
         <h1 className="text-3xl font-bold text-foreground">টিকেট বিস্তারিত</h1>
+      </div>
+      <div className="flex justify-end">
+        <Link href={`/dashboard/tickets/${ticket.id}/edit`}>
+            <Button variant="outline" className="gap-2">
+            <Edit className="w-4 h-4" />
+            সম্পাদনা
+            </Button>
+        </Link>
       </div>
 
       <Card>
@@ -81,6 +94,31 @@ export default async function TicketDetailPage({ params }: { params: { id: strin
               <p className="text-muted-foreground whitespace-pre-wrap">{ticket.notes}</p>
             </div>
           )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted/30 p-4 rounded-lg">
+             <div>
+                <h3 className="font-semibold text-foreground mb-1 flex items-center gap-2">
+                    <Car className="w-4 h-4" /> যানবহন
+                </h3>
+                <p className="text-sm">
+                    <span className="badge badge-outline mr-2">{ticket.vehicleType}</span>
+                    <span className="font-medium">{ticket.vehicleModel}</span>
+                </p>
+             </div>
+             <div>
+                <h3 className="font-semibold text-foreground mb-1 flex items-center gap-2">
+                    <Wrench className="w-4 h-4" /> সেবা
+                </h3>
+                 <p className="text-sm">
+                    <span className="badge badge-outline mr-2">{ticket.serviceType}</span>
+                    {ticket.appointmentDate && (
+                         <span className="text-muted-foreground block mt-1 text-xs">
+                           অ্যাপয়েন্টমেন্ট: {formatDate(ticket.appointmentDate)}
+                         </span>
+                    )}
+                </p>
+             </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-border">
             <div>

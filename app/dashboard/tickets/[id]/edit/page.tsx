@@ -7,11 +7,12 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 
-export default async function EditTicketPage({ params }: { params: { id: string } }) {
+export default async function EditTicketPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const [ticket] = await db
     .select()
     .from(tickets)
-    .where(eq(tickets.id, params.id));
+    .where(eq(tickets.id, id));
 
   if (!ticket) {
     notFound();

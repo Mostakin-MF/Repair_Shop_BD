@@ -11,10 +11,12 @@ import { Mail, Phone, MapPin, Plus } from 'lucide-react';
 export default async function CustomersPage({
   searchParams,
 }: {
-  searchParams?: { page?: string; query?: string };
+  searchParams: Promise<{ page?: string; query?: string }>;
 }) {
-  const page = Number(searchParams?.page) || 1;
-  const query = searchParams?.query || '';
+  const awaitedSearchParams = await searchParams;
+  const { page: pageParam, query: queryParam } = awaitedSearchParams;
+  const page = Number(pageParam) || 1;
+  const query = queryParam || '';
   const pageSize = 10;
   const offset = (page - 1) * pageSize;
 
@@ -117,7 +119,7 @@ export default async function CustomersPage({
                 currentPage={page} 
                 totalPages={totalPages} 
                 baseUrl="/dashboard/customers" 
-                searchParams={searchParams}
+                searchParams={awaitedSearchParams}
               />
             </div>
           </>

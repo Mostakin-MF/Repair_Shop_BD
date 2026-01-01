@@ -3,8 +3,10 @@ import { relations } from 'drizzle-orm';
 
 // Enums
 export const userRoleEnum = pgEnum('user_role', ['EMPLOYEE', 'MANAGER', 'ADMIN']);
-export const ticketStatusEnum = pgEnum('ticket_status', ['OPEN', 'COMPLETED']);
+export const ticketStatusEnum = pgEnum('ticket_status', ['OPEN', 'COMPLETED', 'IN_PROGRESS']);
 export const priorityEnum = pgEnum('priority', ['LOW', 'MEDIUM', 'HIGH']);
+export const vehicleTypeEnum = pgEnum('vehicle_type', ['CAR', 'BIKE', 'OTHER']);
+export const serviceTypeEnum = pgEnum('service_type', ['ENGINE_WORK', 'WASH', 'SERVICING', 'PAINT', 'OTHER']);
 
 // Users Table
 export const users = pgTable('users', {
@@ -33,7 +35,7 @@ export const customers = pgTable('customers', {
     state: varchar('state', { length: 100 }),
     zipCode: varchar('zip_code', { length: 20 }),
     notes: text('notes'),
-    createdBy: uuid('created_by').notNull().references(() => users.id),
+    createdBy: uuid('created_by').references(() => users.id), // Made optional as public booking won't have a user creator initially
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
@@ -48,7 +50,13 @@ export const tickets = pgTable('tickets', {
     customerId: uuid('customer_id').notNull().references(() => customers.id, { onDelete: 'cascade' }),
     assignedTo: uuid('assigned_to').references(() => users.id),
     priority: priorityEnum('priority').notNull().default('MEDIUM'),
-    createdBy: uuid('created_by').notNull().references(() => users.id),
+    // New Fields
+    vehicleType: vehicleTypeEnum('vehicle_type').notNull().default('OTHER'),
+    vehicleModel: varchar('vehicle_model', { length: 100 }).notNull().default('Unknown'), // Default for migration safety, will be required in form
+    serviceType: serviceTypeEnum('service_type').notNull().default('OTHER'),
+    appointmentDate: timestamp('appointment_date'),
+
+    createdBy: uuid('created_by').references(() => users.id), // Made optional for public booking
     createdAt: timestamp('created_at').notNull().defaultNow(),
     completedAt: timestamp('completed_at'),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),

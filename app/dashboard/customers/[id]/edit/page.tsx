@@ -7,11 +7,12 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 
-export default async function EditCustomerPage({ params }: { params: { id: string } }) {
+export default async function EditCustomerPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const [customer] = await db
     .select()
     .from(customers)
-    .where(eq(customers.id, params.id));
+    .where(eq(customers.id, id));
 
   if (!customer) {
     notFound();

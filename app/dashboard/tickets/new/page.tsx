@@ -6,7 +6,8 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 
-export default async function NewTicketPage({ searchParams }: { searchParams: { customerId?: string } }) {
+export default async function NewTicketPage({ searchParams }: { searchParams: Promise<{ customerId?: string }> }) {
+  const { customerId } = await searchParams;
   const allCustomers = await db
     .select()
     .from(customers)
@@ -26,7 +27,7 @@ export default async function NewTicketPage({ searchParams }: { searchParams: { 
 
       <TicketForm 
         customers={allCustomers} 
-        customerId={searchParams.customerId} 
+        customerId={customerId} 
       />
     </div>
   );
